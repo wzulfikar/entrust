@@ -33,7 +33,15 @@ class EntrustServiceProvider extends ServiceProvider
 
         // Register commands
         $this->commands('command.entrust.migration');
-        
+        $this->commands('command.entrust.migration');
+        $this->commands('command.entrust.classes');
+        $this->commands('command.entrust.permission');
+        $this->commands('command.entrust.permission.list');
+        $this->commands('command.entrust.role');
+        $this->commands('command.entrust.role.list');
+        $this->commands('command.entrust.role.attachuser');
+        $this->commands('command.entrust.role.attachpermission');
+
         // Register blade directives
         $this->bladeDirectives();
     }
@@ -111,6 +119,27 @@ class EntrustServiceProvider extends ServiceProvider
         $this->app->singleton('command.entrust.migration', function ($app) {
             return new MigrationCommand();
         });
+        $this->app->singleton('command.entrust.classes', function ($app) {
+            return new ClassCreatorCommand();
+        });
+        $this->app->singleton('command.entrust.role', function ($app) {
+            return new CreateRoleCommand();
+        });
+        $this->app->singleton('command.entrust.permission', function ($app) {
+            return new CreatePermissionCommand();
+        });
+        $this->app->singleton('command.entrust.permission.list', function ($app) {
+            return new PermissionListCommand();
+        });
+        $this->app->singleton('command.entrust.role.list', function ($app) {
+            return new RoleListCommand();
+        });
+        $this->app->singleton('command.entrust.role.attachpermission', function ($app) {
+            return new RoleAttachPermissionCommand();
+        });
+        $this->app->singleton('command.entrust.role.attachuser', function ($app) {
+            return new RoleAttachUserCommand();
+        });
     }
 
     /**
@@ -133,7 +162,14 @@ class EntrustServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
-            'command.entrust.migration'
+            'command.entrust.migration',
+            'command.entrust.classes',
+            'command.entrust.role',
+            'command.entrust.role.list',
+            'command.entrust.role.attachuser',
+            'command.entrust.role.attachpermission',
+            'command.entrust.permission',
+            'command.entrust.permission.list',
         ];
     }
 }
