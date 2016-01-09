@@ -486,6 +486,18 @@ Route::when('admin/advanced*', 'owner_role');
 As you can see `Entrust::hasRole()` and `Entrust::can()` checks if the user is logged in, and then if he or she has the role or permission.
 If the user is not logged the return will also be `false`.
 
+## Available Commands
+Here are list of available commands:
+
+- `entrust:classes`                           Creates Role and Permission classes
+- `entrust:migration`                         Creates a migration following the Entrust specifications.
+- `entrust:permission`                        Creates new permission
+- `entrust:permission:list`                   List all available permissions
+- `entrust:role`                              Creates new role
+- `entrust:role:attachpermission`             Attach permissions to role
+- `entrust:role:attachuser`                   Attach users to role
+- `entrust:role:list`                         List all available roles
+
 ## Troubleshooting
 
 If you encounter an error when doing the migration that looks like:
